@@ -11,10 +11,10 @@
       <span slot="title">{{m.label}}</span>
     </template>
     <el-menu-item-group v-for="(mm, subIndex) in m.children"  :key="mm.path">
-      <el-menu-item :index="subIndex+''">{{mm.label}}</el-menu-item>
+      <el-menu-item @click="clickMenu(mm)" :index="subIndex+''">{{mm.label}}</el-menu-item>
     </el-menu-item-group>
   </el-submenu>
-  
+
 </el-menu>
 </template>
 
@@ -22,7 +22,7 @@
 export default {
     data() {
         return {
-            
+
             menu:[
                 {
                     path:'/',
@@ -46,7 +46,7 @@ export default {
                     url:'UserManage/UserManage',
                 },
                 {
-                
+
                     label:'其他',
                     icon:'location',
                     children:[
@@ -74,7 +74,9 @@ export default {
             this.$router.push({
                 name:item.name
             })
-        },  
+            this.$store.commit("selectMenu",item)
+        },
+
     },
     computed:{
         noChildren(){
