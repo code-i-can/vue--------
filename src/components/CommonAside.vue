@@ -71,6 +71,7 @@ export default {
     },
     methods:{
         clickMenu(item){
+          if(this.$route.name===item.name) return ;
             this.$router.push({
                 name:item.name
             })

@@ -20,6 +20,10 @@ export default {
         selectMenu(state, val){
             if(val.name !== 'home'){
                 state.currentMenu = val
+                if(state.tabsList===null){
+                    state.tabsList = val
+                    return ;
+                }
                 const res =state.tabsList.findIndex( item => item.name === val.name)
                 if(res === -1){
                     state.tabsList.push(val)
@@ -29,7 +33,7 @@ export default {
             }
         },
         closeTag(state, val){
-
+            state.tabsList.splice(val,1)
         },
         setMenu(state,val){
             state.menu = val
